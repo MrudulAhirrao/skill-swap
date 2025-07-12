@@ -7,6 +7,13 @@ import Profile from "./userprofile/profile"
 import SwapRequest from "./userprofile/swaprequest"
 import History from "./userprofile/history"
 import Settings from "./userprofile/settings"
+import AdminDashboard from "./Admin/admindashboard"
+import Skillmoderation from "./Admin/skillmoderation"
+import UserManagement from "./Admin/usermanagement"
+import SwapMonitor from "./Admin/swapmonitor"
+import BroadcastMessage from "./Admin/broadcastmess"
+import Reports from "./Admin/reports"
+import AdminSettings from "./Admin/adminsettings"
 
 function App() {
   return (
@@ -20,6 +27,13 @@ function App() {
         <Route path="/swaprequest" element={<SwapRequest/>} />
         <Route path="/history" element={<History/>} />
         <Route path="/settings" element={<Settings/>} />
+        <Route path="/admindashboard" element={<AdminDashboard/>} />
+        <Route path="/skillmoderation" element={<Skillmoderation/>} />
+        <Route path="/usermanagement" element={<UserManagement/>} />
+        <Route path="/swapmonitor" element={<SwapMonitor/>} />
+        <Route path="/broadcastmess" element={<BroadcastMessage/>} />
+        <Route path="/reports" element={<Reports/>} />
+        <Route path="/adminsettings" element={<AdminSettings/>} />
 
       </Routes>
     </Router>

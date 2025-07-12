@@ -23,13 +23,17 @@ import {
   Settings,
   UserRound,
 } from "lucide-react"
+import { useState } from "react"
 
 export default function Navbar() {
+  // Simulated login state (replace with real auth logic later)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-background border-b shadow-sm px-6 py-4 flex justify-between items-center">
       <h1 className="text-2xl font-bold tracking-tight">⚡ SkillSwap</h1>
-      <div className="flex gap-3 items-center">
 
+      <div className="flex gap-3 items-center">
         {/* Swap Requests Icon */}
         <Popover>
           <PopoverTrigger asChild>
@@ -55,29 +59,45 @@ export default function Navbar() {
           </PopoverContent>
         </Popover>
 
-        {/* Avatar Dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar className="h-8 w-8 cursor-pointer">
-              <AvatarImage src="" />
-              <AvatarFallback>U</AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <UserRound className="w-4 h-4 mr-2" />
-              <Link to="/profile">Profile</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Settings className="w-4 h-4 mr-2" />
-              <Link to="/settings">Settings</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {isLoggedIn ? (
+          // Avatar + Dropdown for logged-in users
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar className="h-8 w-8 cursor-pointer">
+                <AvatarImage src="" />
+                <AvatarFallback>U</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link to="/profile" className="flex items-center">
+                  <UserRound className="w-4 h-4 mr-2" />
+                  Profile
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/settings" className="flex items-center">
+                  <Settings className="w-4 h-4 mr-2" />
+                  Settings
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => setIsLoggedIn(false)}
+                className="text-destructive"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          // Show login button if not logged in
+          <Link to="/login">
+            <Button variant="outline" className="text-sm px-4 py-2">
+              Login
+            </Button>
+          </Link>
+        )}
       </div>
     </header>
   )
