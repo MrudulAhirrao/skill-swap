@@ -7,7 +7,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { loginUser } from "@/lib/api"
+import { toast } from "sonner"
 
 export function LoginForm({
   className,
@@ -16,18 +18,34 @@ export function LoginForm({
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isAdmin, setIsAdmin] = useState(false)
-  const [loginReady, setLoginReady] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!email || !password) {
+      toast.error("Please fill in all fields")
+      return
+    }
 
-    // simulate login validation
-    if (email && password) {
-      setLoginReady(true)
+    try {
+      setLoading(true)
+      const res = await loginUser(email, password)
+      toast.success("Login successful")
+
+      // Store token and user details if needed
+      localStorage.setItem("token", res.token)
+      localStorage.setItem("user", JSON.stringify(res.user))
+
+      // Navigate to appropriate dashboard
+      const destination = isAdmin ? "/admindashboard" : "/"
+      navigate(destination)
+    } catch (error: any) {
+      toast.error(error.message)
+    } finally {
+      setLoading(false)
     }
   }
-
-  const loginDestination = isAdmin ? "/admindashboard" : "/"
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -82,13 +100,9 @@ export function LoginForm({
                 <Label htmlFor="admin">Login as Admin</Label>
               </div>
 
-              {loginReady ? (
-                <Link to={loginDestination}>
-                  <Button type="button" className="w-full">Continue</Button>
-                </Link>
-              ) : (
-                <Button type="submit" className="w-full">Login</Button>
-              )}
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? "Logging in..." : "Login"}
+              </Button>
 
               <div className="text-center text-sm">
                 Don’t have an account?{" "}
