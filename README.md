@@ -1,69 +1,49 @@
-# React + TypeScript + Vite
+# Skill Swap Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🧠 Problem Statement Title:
+**Skill Swap Platform – Empowering Peer-to-Peer Learning**
 
-Currently, two official plugins are available:
+## 👥 Team Members:
+- **Mrudul Ahirrao**
+- **Tanmay Shindkar**
+- **Shradha Yeole**
+- **Pratiksha Ghodke**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Overview
+The Skill Swap Platform is a mini web application designed to facilitate **peer-to-peer skill exchange**. Users can list the skills they offer and the skills they seek to learn. The platform helps people connect based on complementary skill sets and mutually agreed availability.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🌟 Key Features
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 👤 User Profile
+- Name, location (optional), profile photo (optional)
+- List of skills offered
+- List of skills wanted
+- Availability preferences (e.g., weekends, evenings)
+- Profile visibility settings: **Public / Private**
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 🔍 Browse & Search
+- Users can **browse** other profiles
+- **Search** functionality based on skills (e.g., "Photoshop", "Excel")
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🔄 Swap Requests
+- Send, receive, accept, or reject swap requests
+- View current and pending swaps
+- Delete unaccepted requests
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### ⭐ Ratings & Feedback
+- Leave feedback after each successful skill swap
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔐 Admin Dashboard
+- Review & reject inappropriate or spammy skill descriptions
+- Ban users violating policies
+- Monitor swap status: pending, accepted, or cancelled
+- Send **platform-wide notifications** (e.g., updates, downtime alerts)
+- Download reports:
+  - User activity logs
+  - Feedback logs
+  - Swap statistics
+
