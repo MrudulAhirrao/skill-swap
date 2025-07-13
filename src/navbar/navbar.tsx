@@ -28,6 +28,7 @@ import { useState } from "react"
 export default function Navbar() {
   // Simulated login state (replace with real auth logic later)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
 
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-background border-b shadow-sm px-6 py-4 flex justify-between items-center">
